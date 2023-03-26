@@ -25,6 +25,9 @@ public class MatriculaService {
 
 	@Autowired
 	private ModelMapper modelMapper;
+	
+	@Autowired 
+	private Utilities utilities;
 
 	@Transactional(readOnly = true)
 	public MatriculaDTO findById(Long id) {
@@ -56,27 +59,27 @@ public class MatriculaService {
 		if (intSituacaoMatricula + inTipoPagamento <= -2)   // os dois parametros vao ser inexistentes somente se a soma de -2 
 		{
 			Page<Matricula> list = matriculaRepository.findPorFiltro(
-					Utilities.converteParaInstant(tsInicio, "T00:00:00Z"),
-					Utilities.converteParaInstant(tsFim, "T00:23:59Z"), pageRequest);
+					utilities.converteParaInstant(tsInicio, "T00:00:00Z"),
+					utilities.converteParaInstant(tsFim, "T00:23:59Z"), pageRequest);
 			return list.map(p -> modelMapper.map(p, MatriculaAlunoTelefoneDTO.class));
 		} else if(intSituacaoMatricula <0) {
 			Page<Matricula> list = matriculaRepository.findPorFiltro(
 					TipoDePagamento.valueOf(Integer.parseInt(tipoPagamento)),
-					Utilities.converteParaInstant(tsInicio, "T00:00:00Z"),
-					Utilities.converteParaInstant(tsFim, "T00:23:59Z"), pageRequest);
+					utilities.converteParaInstant(tsInicio, "T00:00:00Z"),
+					utilities.converteParaInstant(tsFim, "T00:23:59Z"), pageRequest);
 			return list.map(p -> modelMapper.map(p, MatriculaAlunoTelefoneDTO.class));		
 		} else if(inTipoPagamento <0) {
 			Page<Matricula> list = matriculaRepository.findPorFiltro(
 					SituacaoDaMatricula.valueOf(Integer.parseInt(situacaoMatricula)),
-					Utilities.converteParaInstant(tsInicio, "T00:00:00Z"),
-					Utilities.converteParaInstant(tsFim, "T00:23:59Z"), pageRequest);
+					utilities.converteParaInstant(tsInicio, "T00:00:00Z"),
+					utilities.converteParaInstant(tsFim, "T00:23:59Z"), pageRequest);
 			return list.map(p -> modelMapper.map(p, MatriculaAlunoTelefoneDTO.class));					
 		}
 		else {Page<Matricula> list = matriculaRepository.findPorFiltro(
 				TipoDePagamento.valueOf(Integer.parseInt(tipoPagamento)),
 				SituacaoDaMatricula.valueOf(Integer.parseInt(situacaoMatricula)),
-				Utilities.converteParaInstant(tsInicio, "T00:00:00Z"),
-				Utilities.converteParaInstant(tsFim, "T00:23:59Z"), pageRequest);
+				utilities.converteParaInstant(tsInicio, "T00:00:00Z"),
+				utilities.converteParaInstant(tsFim, "T00:23:59Z"), pageRequest);
 		return list.map(p -> modelMapper.map(p, MatriculaAlunoTelefoneDTO.class));
 			
 			

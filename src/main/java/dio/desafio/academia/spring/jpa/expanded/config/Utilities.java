@@ -1,4 +1,7 @@
 package dio.desafio.academia.spring.jpa.expanded.config;
+/**
+ *   Singleton  Utilities
+ */
 
 import java.time.Instant;
 import java.time.LocalDate;
@@ -6,7 +9,20 @@ import java.time.format.DateTimeFormatter;
 
 public class Utilities {
 	
-	public static Instant converteParaInstant(String data,String horaMinutoSegundo)
+	private static class UtilitiesInstanceHolder{
+		public static Utilities instanceUtilities = new Utilities();
+	}
+	
+	private Utilities(){
+		super();
+	}
+	
+	public static Utilities getInstancia()
+	{
+		return UtilitiesInstanceHolder.instanceUtilities;
+	}
+	
+	public Instant converteParaInstant(String data,String horaMinutoSegundo)
 	{
 		// convert String to LocalDate and to Instant
 

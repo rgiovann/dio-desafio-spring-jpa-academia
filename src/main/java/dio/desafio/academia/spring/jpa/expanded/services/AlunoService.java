@@ -36,12 +36,15 @@ public class AlunoService {
 
 	@Autowired
 	private ModelMapper modelMapper;
+	
+	@Autowired 
+	private Utilities utilities;
 
 	@Transactional(readOnly = true)
 	public Page<AlunoTelefoneDTO> findAll(String bairroId, String tsInicio, String tsFim, Pageable pageRequest) {
 
-		Page<Aluno> list = alunoRepository.findPorFiltro(bairroId, Utilities.converteParaInstant(tsInicio, "T00:00:00Z"), 
-																   Utilities.converteParaInstant(tsFim, "T00:00:00Z"),pageRequest);
+		Page<Aluno> list = alunoRepository.findPorFiltro(bairroId, utilities.converteParaInstant(tsInicio, "T00:00:00Z"), 
+				utilities.converteParaInstant(tsFim, "T00:00:00Z"),pageRequest);
 
 		return list.map(p -> modelMapper.map(p, AlunoTelefoneDTO.class));
 

@@ -33,6 +33,9 @@ public class AvaliacaoFisicaService {
 	@Autowired
 	private ModelMapper modelMapper;
 	
+	@Autowired 
+	private Utilities utilities;
+	
 	
 	@Transactional
 	public AvaliacaoFisicaDTO insert(AvaliacaoFisicaDTO avaliacaoFisicaDTO, Long id) {
@@ -98,14 +101,14 @@ public class AvaliacaoFisicaService {
 		if (intObjetivoAluno  <= -1)   // os dois parametros vao ser inexistentes somente se a soma de -2 
 		{
 			Page<AvaliacaoFisica> list = avaliacaoFisicaRepository.findPorFiltro(
-					Utilities.converteParaInstant(tsInicio, "T00:00:00Z"),
-					Utilities.converteParaInstant(tsFim, "T00:23:59Z"), pageRequest);
+					utilities.converteParaInstant(tsInicio, "T00:00:00Z"),
+					utilities.converteParaInstant(tsFim, "T00:23:59Z"), pageRequest);
 			return list.map(p -> modelMapper.map(p, AvaliacaoFisicaAlunoTelefoneDTO.class));
 		} 
 		else {Page<AvaliacaoFisica> list = avaliacaoFisicaRepository.findPorFiltro(
 				ObjetivoDoAluno.valueOf(intObjetivoAluno),
-				Utilities.converteParaInstant(tsInicio, "T00:00:00Z"),
-				Utilities.converteParaInstant(tsFim, "T00:23:59Z"), pageRequest);
+				utilities.converteParaInstant(tsInicio, "T00:00:00Z"),
+				utilities.converteParaInstant(tsFim, "T00:23:59Z"), pageRequest);
 		return list.map(p -> modelMapper.map(p, AvaliacaoFisicaAlunoTelefoneDTO.class));
 			
 			

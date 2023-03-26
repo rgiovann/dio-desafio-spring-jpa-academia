@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import dio.desafio.academia.spring.jpa.expanded.dto.EnderecoDTO;
-import dio.desafio.academia.spring.jpa.expanded.entities.Aluno;
 import dio.desafio.academia.spring.jpa.expanded.entities.Endereco;
 import dio.desafio.academia.spring.jpa.expanded.repositories.EnderecoRepository;
 import dio.desafio.academia.spring.jpa.expanded.services.exceptions.ResourceNotFoundException;
