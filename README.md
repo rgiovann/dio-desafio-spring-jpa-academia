@@ -32,6 +32,7 @@
 Como aprendizado foi excelente, pois com esse projeto entendi um pouco mais de relacionamentos 1 para 1 e como manipular os mesmos, criei varias queries JPQL e também
 manipulei enumerators e atributos do tipo Instant.
 
-<bold>Update para o Desafio de Projetos Padrão de Projetos: Modificado classe que chamava método estático para um padrão de projeto Singleton, usando as annotations @Config, @Bean e @Autowired.</bold>
+<h2><b>
+🛑 Update para o Desafio de Projetos Padrão de Projetos: Modificado classe <i>Utilities</i> que chamava métodos estáticos para um padrão de projeto Singleton, usando as annotations @Config, @Bean e @Autowired.</h2></b>
 
 ![main window](https://github.com/rgiovann/image-repo/blob/main/diagrama_de_classes_academia.jpg)
